@@ -1,81 +1,114 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+  <head>
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>Шашки</title>
     <script src="suica.min.js"></script>
     <script src="script.js"></script>
-</head>
+    <script src="https://kit.fontawesome.com/5c9473fc67.js" crossorigin="anonymous"></script>
+    <script>
+    window.addEventListener('load', function() {
+      var suicaCanvas = document.getElementById('suica_canvas');
+      var screenWidth = Math.min(window.innerWidth, 1190);
+      suicaCanvas.width = (screenWidth - 40);
+    });
+    </script>
+    <script>
+    window.addEventListener('resize', function() {
+      var suicaCanvas = document.getElementById('suica_canvas');
+      var screenWidth = Math.min(window.innerWidth, 1190);
+      suicaCanvas.width = (screenWidth - 40);
+    });
+    </script>
+  </head>
 
-<body onload="main()">
+  <body onload="main()">
     <!-- Home view -->
     <div class="home-view">
-        <div id="dimmer"></div>
-        <h1>Шашки</h1>
-        <button id="about-game-btn" onclick="location.href='#about-game-view'">За играта</button>
-        <button id="tutorial-btn" onclick="location.href='#tutorial-view'">Указания</button>
+      <div id="dimmer"></div>
+      <h1>Шашки</h1>
+      <div class="home-buttons">
+        <button id="about-game-btn" onclick="location.href='#about-game-view'">История на играта</button>
+        <button id="tutorial-btn" onclick="location.href='#tutorial-view'">Правила на играта</button>
+        <button id="to-board-btn" onclick="location.href='#to-board-view'">Игра с приятел</button>
+        <button id="help-btn" onclick="location.href='./help.html'">Помощ</button>
+      </div>
     </div>
 
     <!-- Navbar -->
     <div class="navbar">
-        <span>Шашки</span>
-        <div class="links">
-            <a href="#tutorial-view">Указания</a>
-            <a href="#about-game-view">За играта</a>
-            <a href="#">Начало</a>
-
-        </div>
+      <span class="logo">Шашки</span>
+      <div class="links">
+        <a href="#"><span class="fa fa-circle-question"></span></a>
+        <a href="#"><span class="fa fa-circle-half-stroke"></span></a>
+        <!-- <a href="./help.html">Помощ</a> -->
+        <a href="#to-board-view">Игра с приятел</a>
+        <a href="#tutorial-view">Правила на играта</a>
+        <a href="#about-game-view">История на играта</a>
+        <a href="#">Начало</a>
+      </div>
     </div>
 
     <!-- About the game view -->
     <div id="about-game-view">
-        <h2>За играта</h2>
-        <p>Шашки е настолна логическа игра за двама, подобна на шаха.
+      <h2>История на играта</h2>
+      <!-- <p>За играта по-късно разказват Платон и Омир. -->
+      <!--     Римляните разработват вариант на играта, наречен <i>latrunculi</i>, или "игра на малките войници". </p> -->
+      <!-- <p>Съвременния си вид, играта придобива през Средновековието. -->
+      <!--     Арабите създават играта "Ал-Кирк", която се играе на дъска 5x5, и я пренасят в Испания, където я наричат -->
+      <!--     "Алкерке". -->
+      <!--     В началото на дванадесети век играта достига и до Франция, където е адаптирана, за да се играе на шахматна -->
+      <!--     дъска. -->
+      <!--     Наричат я <i>Fierges</i>. </p> -->
+      <!-- <p>Днес играта е разпространена по целия свят и се среща в няколко вариации - Checkers (САЩ), -->
+      <!--     draughts(Великобритания), руски шашки, турски шашки, международни шашки и други. -->
+      <!--     Повечето варианти се играят на дъска 8x8, а международните шашки - на дъска 10x10. </p> -->
+      <!-- <p>Играта е популярна и на турнири, където традиционно се играе в международния си вариант, като една игра -->
+      <!--     традиционно отнема от 60 минути до 3 часа.</p> -->
+      <div id="gallery">
+        <span class="fa fa-chevron-left"></span>
+        <div id="gallery-content">
+          <p>Шашки е настолна логическа игра за двама, подобна на шаха.
             Играе се на шахматна дъска с бели и черни редуващи се квадратчета.
             Шашките са белите и черните фигури, които в началото на играта са равноправни.
             Фигурите са разположени само в черните полета на шахматната дъска и могат да се придвиждват по диагонал и да
             взимат противникови фигури на пътя си.
             При достигане на срещуположния край на дъската, фигурите се превръщат в "царе", което им позволява да се
             движат по диагонал не само напред, но и назад.</p>
-        <p>Играта има древна история.
-            Счита се, че произхожда от Древен Египет, където археолозите са открили дъски, датиращи от 3000г. пр. Хр.
-            Артефактите потвърждават, че някои фарони, сред които Хатшепсут, са играли шашки по фигурите и дъските,
-            открити в гробниците им. </p>
-        <p>За играта по-късно разказват Платон и Омир.
-            Римляните разработват вариант на играта, наречен <i>latrunculi</i>, или "игра на малките войници". </p>
-        <p>Съвременния си вид, играта придобива през Средновековието.
-            Арабите създават играта "Ал-Кирк", която се играе на дъска 5x5, и я пренасят в Испания, където я наричат
-            "Алкерке".
-            В началото на дванадесети век играта достига и до Франция, където е адаптирана, за да се играе на шахматна
-            дъска.
-            Наричат я <i>Fierges</i>. </p>
-        <p>Днес играта е разпространена по целия свят и се среща в няколко вариации - Checkers (САЩ),
-            draughts(Великобритания), руски шашки, турски шашки, международни шашки и други.
-            Повечето варианти се играят на дъска 8x8, а международните шашки - на дъска 10x10. </p>
-        <p>Играта е популярна и на турнири, където традиционно се играе в международния си вариант, като една игра
-            традиционно отнема от 60 минути до 3 часа.</p>
+          <!-- <p>Играта има древна история. -->
+          <!--     Счита се, че произхожда от Древен Египет, където археолозите са открили дъски, датиращи от 3000г. пр. Хр. -->
+          <!--     Артефактите потвърждават, че някои фарони, сред които Хатшепсут, са играли шашки по фигурите и дъските, -->
+          <!--     открити в гробниците им. </p> -->
+          <div style="width: 850px; height: 150px; border: 1px solid black;">
+            Снимка
+          </div>
+        </div>
+        <span class="fa fa-chevron-right"></span>
+      </div>
     </div>
 
     <!-- Tutorial view -->
     <div id="tutorial-view">
-        <canvas id="suica_canvas" width="1190" height="638"></canvas>
-        <div class="tutorial-instructions">
-            <h2>Указания</h2>
-            <p id="instruction">
-                Играта шашки се играе от двама играчи.
-                Всички фигури в началото на играта са обикновени и могат да се движат само напред по диагонал.
-                Първи на ход са белите фигури.
-            </p>
-            <div class="bottom">
-                <button id="next-btn" onclick="next()">Напред</button>
-                <br>
-                <label>
-                    <input type="checkbox" onchange="toggleRotation()" id="check">Автоматично завъртане
-                </label>
-            </div>
-        </div>
+      <canvas id="suica_canvas" width="1190" height="640"></canvas>
+      <div class="tutorial-instructions">
+        <h2>Указания</h2>
+        <p id="instruction">
+          Играта шашки се играе от двама играчи.
+          Всички фигури в началото на играта са обикновени и могат да се движат само напред по диагонал.
+          Първи на ход са белите фигури.
+        </p>
+          <button id="next-btn" onclick="next()">Напред</button>
+          <br>
+          <label>
+            <input type="checkbox" onchange="toggleRotation()" id="check">Автоматично завъртане
+          </label>
+      </div>
     </div>
-</body>
+    <div id="to-board-view">
+      <h2>Играйте с приятел</h2>
+      <button type="button" onclick="location.href='board.html'">Към дъската!</button>
+    </div>
+  </body>
 
 </html>

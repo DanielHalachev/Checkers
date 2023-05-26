@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Шашки</title>
+    <script src="suica.min.js"></script>
+    <script src="script.js"></script>
+    <script src="https://kit.fontawesome.com/5c9473fc67.js" crossorigin="anonymous"></script>
+  </head>
+
+<body onload="main()">
+    <!-- Navbar -->
+    <div class="navbar">
+        <span>Шашки</span>
+        <div class="links">
+            <a href="board.html">Игра с приятел</a>
+            <a href="index.html#to-board-view">Правила на играта</a>
+            <a href="index.html#about-game-view">История на играта</a>
+            <a href="index.html#">Начало</a>
+        </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top: 100px; height: calc(100vh - 100px);">
+      <h2>Игра с приятел</h2>
+      <canvas id="suica_canvas" width="1190" height="580"></canvas>
+    </div>
+</body>
+
+</html>

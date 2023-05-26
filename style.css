@@ -3,158 +3,200 @@
 
 /* Common styles */
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-    font-family: "Pacifico", cursive;
-    margin: 0;
+  font-family: "Pacifico", cursive;
+  margin: 0;
 }
 
 p {
-    font-size: 1.2em;
-    font-family: "Marck Script", cursive;
+  font-size: 1.2em;
 }
 
 button {
-    font-family: "Pacifico", cursive;
+  font-family: "Pacifico", cursive;
 }
 
 /* Home view styles */
 .home-view {
-    background-image: url(checkers-bg.png);
-    background-size: cover;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+  background-image: url(checkers-bg.png);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+}
+
+.home-buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1em;
 }
 
 #dimmer {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.45);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.45);
 }
 
 .home-view h1 {
-    font-size: 10em;
-    text-align: center;
-    transform: rotate(-5deg);
-    text-shadow: 2px 2px red;
-    margin-bottom: 1em;
-    color: white;
+  font-size: 10em;
+  text-align: center;
+  transform: rotate(-5deg);
+  text-shadow: 2px 2px red;
+  color: white;
+  margin: 0;
 }
 
-.home-view button {
-    padding: 1em 2em;
-    font-size: 1.2em;
-    margin: 1em;
-    background-color: #333;
-    color: #fff;
-    border: 1px solid red;
-    border-radius: 5px;
-    cursor: pointer;
-    position: relative;
+button {
+  padding: 1em 2em;
+  font-size: 1.2em;
+  width: 250px;
+  background-color: #333;
+  color: #fff;
+  border: 1px solid red;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
 }
 
 /* Navbar styles */
 .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 70px;
-    background-color: #333;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 1em;
-    color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background-color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1em;
+  color: #fff;
+  z-index: 100;
 }
 
-.navbar span {
-    font-size: 2.5em;
-    transform: rotate(-5deg);
-    text-shadow: 2px 2px red;
-    margin: 1em;
-    color: white;
+.navbar .logo {
+  font-size: 2.5em;
+  transform: rotate(-5deg);
+  text-shadow: 2px 2px red;
+  margin: 1em;
+  color: white;
 }
 
 .links {
-    float: right;
+  float: right;
 }
 
 .navbar a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.2em;
-    margin-right: 1em;
-    float: right;
+  color: white;
+  text-decoration: none;
+  font-size: 1.2em;
+  margin-right: 1em;
+  float: right;
 }
 
 /* About the game view styles */
 #about-game-view {
-    height: calc(100vh - 70px);
-    background-color: white;
-    padding: 1em;
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    scroll-margin-top: 70px;
+  height: calc(100vh - 70px);
+  background-color: white;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+  scroll-margin-top: 70px;
 }
 
+
 #about-game-view h2 {
-    font-size: 2em;
-    margin-bottom: 1em;
+  font-size: 2em;
+  margin-bottom: 1em;
+}
+
+#about-game-view #gallery {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  height: 100%;
+}
+
+#gallery span {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: xx-large;
+}
+
+#gallery-content {
+  flex: 6;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
 }
 
 /* Tutorial view styles */
 #tutorial-view {
-    height: calc(100vh - 70px);
-    background-color: white;
-    display: flex;
-    align-items: center;
-    scroll-margin-top: 70px;
+  height: calc(100vh - 70px);
+  background-color: white;
+  display: flex;
+  align-items: center;
+  scroll-margin-top: 70px;
+  padding: 20px;
+  gap: 20px;
+}
+
+@media (max-width: 1300px) {
+  #tutorial-view {
+    flex-direction: column-reverse;
+  }
+  #tutorial-view {
+    height: auto;
+  }
+  .tutorial-instructions {
+    height: auto;
+  }
 }
 
 #suica_canvas {
-    border: 1px solid #333;
-    margin: 20px;
+  border: 1px solid #333;
 }
 
 .tutorial-instructions {
-    width: 25%;
-    height: 100%;
-    padding: 1em;
-    overflow-y: auto;
-    position: relative;
-}
-
-.bottom {
-    bottom: 50px;
-    position: absolute;
-    left: 0;
-    right: 0;
+  display: flex;
+  flex-direction: column;
+  height: 640px;
+  width: calc(100%);
 }
 
 .tutorial-instructions h2 {
-    font-size: 1.5em;
-    margin-bottom: 1em;
+  font-size: 1.5em;
+  margin-bottom: 1em;
 }
 
-.bottom button {
-    width: 90%;
-    padding: 1em;
-    font-size: 1.2em;
-    margin-top: 1em;
-    background-color: #333;
-    color: #fff;
-    border: 1px solid red;
-    border-radius: 5px;
-    cursor: pointer;
+.tutorial-instructions button {
+  margin-top: auto;
+  align-self: center;
+}
+
+#to-board-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 70px)
 }
