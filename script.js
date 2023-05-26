@@ -206,12 +206,12 @@ function prepareMovement(figure) {
     if (isBlack(x, y)) {
         // standard
         if (figure.height == 0.15) {
-            console.log("Height=0.15 case")
+            console.log("Black pool")
             prepareBlack(x, y);
         }
         // king
         else {
-            console.log("Else case");
+            console.log("Black king");
             prepareBlackKing(x, y);
         }
     }
@@ -219,10 +219,12 @@ function prepareMovement(figure) {
     else if (isWhite(x, y)) {
         // standard
         if (figure.height == 0.15) {
+            console.log("White pool")
             prepareWhite(x, y);
         }
         // king
         else {
+            console.log("White king")
             prepareWhiteKing(x, y);
         }
     }
@@ -237,25 +239,31 @@ function move(figure, square) {
     var oldY = figure.center[1];
     var newX = square.center[0];
     var newY = square.center[1];
-    // king transformation
-    if (newY == 0) {
-        figures[newX][newY] = cone([newX, newY, 0], 0.35, 1).custom({ color: [0, 0, 0], interactive: true });
-    }
-    else if (newY == 7) {
-        figures[newX][newY] = cone([newX, newY, 0], 0.35, 1).custom({ color: [1, 1, 1], interactive: true });
-    }
-    // simple movement
-    else {
-        figure.center[0] = newX;
-        figure.center[1] = newY;
-        figures[newX][newY] = figure;
-    }
+
+    // perform movement
+    figure.center[0] = newX;
+    figure.center[1] = newY;
+
     // array updating
+    figures[newX][newY] = figure;
     figures[oldX][oldY] = null;
+
     // erasing the swiped figures
     deleteInPath(oldX, oldY, newX, newY);
+
     // hidind the options
     hideOptions();
+
+    // change to king, if needed
+    if (figure.center[1] == 0){
+      // figure.visible = false;
+      figure = cone([newX, newY, 0], 0.35, 1).custom({ color: [0, 0, 0], interactive: true });  
+    } else if (figure.center[1] == 7){
+      // figure.visible = false;
+      figure = cone([newX, newY, 0], 0.35, 1).custom({ color: [1, 1, 1], interactive: true });  
+      
+    }
+
     // automatic rotation
     isWhiteTurn = !isWhiteTurn;
     if (rotationEnabled) {
