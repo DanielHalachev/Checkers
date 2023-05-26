@@ -134,7 +134,7 @@ function mouseDown(event) {
     clX = event.clientX;
     clY = event.clientY;
     fig = p.objectAtPoint(event.clientX, event.clientY);
-    console.log("mouseDown, object=", fig);
+    console.log("mouseDown, pressed object=", fig);
     if (fig) {
         // we have selected either a figure or a square to move it to
         // if it's a figure
@@ -143,13 +143,21 @@ function mouseDown(event) {
             selectedFigure = fig;
             prepareMovement(selectedFigure);
         }
+        // do something only if we have pressed an object, not an empty space
         else {
-            // do something only if we don't give up
-            if (fig != selectedFigure) {
-                console.log("We have selected a square");
+            // we haven't pressed the figure we have intially selected, but a square to move to
+            if (fig != selectedFigure && isPossibleOption(fig)) {
+                console.log("We have pressed a square")
                 move(selectedFigure, fig);
             }
+            // we haven't pressed the figure we have intially selected, but another figure
+            else if (fig != selectedFigure && isFigure(fig)) {
+                console.log("We have selected another figure");
+                hideOptions();
+            }
+            // we have pressed the figure we had selected initially
             else {
+                console.log("We haven't pressed neither another figure, nor a square");
                 hideOptions();
             }
             selectedFigure = null;
@@ -500,5 +508,32 @@ function isWhite(x, y) {
         return figures[x][y].color[0] == 1 && figures[x][y].color[1] == 1 && figures[x][y].color[2] == 1;
     }
     return false;
+}
+
+// function to check if the object is a figure
+function isFigure(object) {
+  // Check if the object is a king
+  if (object instanceof Suica.Cone) {
+    return true;
+  }
+
+  // Check if the object is a pool
+  if (object instanceof Suica.Cylinder) {
+    return true;
+  }
+
+  // Object is neither a king nor a pool
+  return false;
+}
+
+// function to check if the object is a square
+function isPossibleOption(object) {
+  // Check if the object is a square indicating a possible move
+  if (object instanceof Suica.Square) {
+    return true;
+  }
+
+  // Object is not a possible option
+  return false;
 }
 //#endregion
