@@ -1,3 +1,16 @@
+// the tips, displayed by clicking on the Next button
+//#region instructions
+instructionCounter = 0;
+instructions = [
+    "Играта шашки се играе от двама играчи. Всички фигури в началото на играта са обикновени и могат да се движат само напред по диагонал. Първи на ход са белите фигури.",
+    "Натиснете с мишката бяла фигура. Възможните полета за преместване на фигурата ще се оцветят в червено.",
+    "Целта на играта е да вземете всички фигури на противника или да ги блокирате, при което не могат да се движат. Можете да вземете вражеска фигура, ако я \"прескочите\" по диагонал. За целта преместете Вашата фигура в празното поле зад вражеската. ",
+    "Ако по пътя Ви напред има множество вражески фигури, разполежени през една, с един ход можете да прескочите всички. ",
+    "Когато Ваша фигура достигне до края на дъската, тя се превръща в цар, който може да се движи по диагонал и назад.",
+    "Играчът, унищожил или блокирал всички фигури на противника, печели.",
+    "Играйте срещу приятел или упражнете правилата на играта сами върху дъската. С цел самообучение са позволени неограничен брой последователни ходове."]
+//#endregion
+
 // flags and universally used variables
 //#region common variables
 // indicates whether automatic rotation is enabled
@@ -5,6 +18,8 @@ rotationEnabled = false;
 // indicates whose turn it is - used in automatic rotation
 isWhiteTurn = true;
 // predefined colors
+black = [0, 0, 0];
+white = [1, 1, 1];
 red = [1, 0, 0];
 // a reference to the selected figure
 selectedFigure = null;
@@ -34,7 +49,13 @@ for (var i = 0; i < 8; i++) {
 possibleOptions = [];
 //#endregion
 
-//function to toggle automatic rotation checkbox
+// function to show next tip
+function next() {
+    instructionCounter = (instructionCounter + 1) % (instructions.length);
+    document.getElementById("instruction").innerHTML = instructions[instructionCounter];
+}
+
+// function to toggle automatic rotation checkbox
 function toggleRotation() {
     var checkbox = document.getElementById("check");
     if (checkbox.checked) {
@@ -66,7 +87,7 @@ function checkers() {
     for (var y = 0; y < 3; y++) {
         for (var x = 0; x < 8; x++) {
             if (isBlack == 0) {
-                figures[x][y] = cylinder([x, y, 0], 0.35, 0.15).custom({ color: [1, 1, 1], interactive: false });
+                figures[x][y] = cylinder([x, y, 0], 0.35, 0.15).custom({ color: [1, 1, 1], interactive: true });
             }
             isBlack = 1 - isBlack;
         }
@@ -75,7 +96,7 @@ function checkers() {
     for (var y = 5; y < 8; y++) {
         for (var x = 0; x < 8; x++) {
             if (isBlack == 0) {
-                figures[x][y] = cylinder([x, y, 0], 0.35, 0.15).custom({ color: [0, 0, 0], interactive: false });
+                figures[x][y] = cylinder([x, y, 0], 0.35, 0.15).custom({ color: [0, 0, 0], interactive: true });
             }
             isBlack = 1 - isBlack;
         }
@@ -118,16 +139,9 @@ function mouseDown(event) {
         // we have selected either a figure or a square to move it to
         // if it's a figure
         if (selectedFigure == null) {
-        console.log(fig.color);
-          if(fig.color[0]==1/2 && fig.color[1]==1/2 && fig.color[2] == 1){
             console.log("We have pressed a figure");
             selectedFigure = fig;
             prepareMovement(selectedFigure);
-            } else {
-            selectedFigure = null;
-            fig = null;
-            alert("Моля изберете акцентираната фигура");
-            }
         }
         // do something only if we have pressed an object, not an empty space
         else {
@@ -244,11 +258,10 @@ function move(figure, square) {
     if (figure.center[1] == 0){
       figure.visible = false;
       figure = cone([newX, newY, 0], 0.35, 1).custom({ color: [0, 0, 0], interactive: true });  
-      figures[newX][newY] = figure;
     } else if (figure.center[1] == 7){
       figure.visible = false;
       figure = cone([newX, newY, 0], 0.35, 1).custom({ color: [1, 1, 1], interactive: true });  
-      figures[newX][newY] = figure;
+      
     }
 
     // automatic rotation
@@ -496,15 +509,7 @@ function isBlack(x, y) {
 // function to check if the figure at (X,Y) is white
 function isWhite(x, y) {
     if (figures[x][y]) {
-        return (figures[x][y].color[0] == 1 && figures[x][y].color[1] == 1 && figures[x][y].color[2] == 1) || (figures[x][y].color[0] == 1/2 && figures[x][y].color[1] == 1/2 && figures[x][y].color[2] == 1);
-    }
-    return false;
-}
-
-// function to check if the figure at (X,Y) is blue
-function isBlue(x, y) {
-    if (figures[x][y]) {
-        return (figures[x][y].color[0] == 1/2 && figures[x][y].color[1] == 1/2 && figures[x][y].color[2] == 1);
+        return figures[x][y].color[0] == 1 && figures[x][y].color[1] == 1 && figures[x][y].color[2] == 1;
     }
     return false;
 }
