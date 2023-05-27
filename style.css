@@ -19,6 +19,14 @@ button {
   font-family: "Pacifico", cursive;
 }
 
+button[disabled] {
+  opacity: 0.5;
+}
+
+button[disabled]:hover {
+  cursor: auto;
+}
+
 /* Home view styles */
 .home-view {
   background-image: url(checkers-bg.png);
@@ -191,6 +199,11 @@ button {
 .tutorial-instructions button {
   margin-top: auto;
   align-self: center;
+}
+
+#tutorial-view canvas.disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 #to-board-view {

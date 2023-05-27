@@ -1,4 +1,22 @@
 // the tips, displayed by clicking on the Next button
+
+document.addEventListener("DOMContentLoaded", function() {
+  instructionButton = document.querySelector('#tutorial-view button');
+  canvas = document.querySelector('#tutorial-view canvas');
+});
+
+function enableCanvas(){
+  canvas.classList.remove('disabled');
+}
+
+function disableCanvas(){
+  canvas.classList.add('disabled');
+}
+
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 instructionCounter = 0;
 instructions = [
   "Играта шашки се играе от двама играчи. Всички фигури в началото на играта са шашки и могат да се движат само напред по диагонал. Първи на ход са белите фигури.",
@@ -12,6 +30,7 @@ instructions = [
 
 // function to show next tip
 function next() {
+  enableCanvas();
   instructionCounter = (instructionCounter + 1) % (instructions.length);
   document.getElementById("instruction").innerHTML = instructions[instructionCounter];
   selectedFigure = null;
@@ -36,9 +55,11 @@ function next() {
     default:
       break;
   }
+  instructionButton.disabled = true;
 }
 
 function one() {
+  document.querySelector('#tutorial-view canvas').classList.remove('disabled');
   for (let i = 0; i<8; i++){
     for (let j = 0; j<8; j++) {
       if (figures[i][j]){
@@ -51,45 +72,121 @@ function one() {
 
 function two() {
   figures[5][3].color = [1,1,1];
-  selectedFigure = figures[5][5];
-  move(selectedFigure, options[6][4]); 
-  figures[2][2].color = [1/2, 1/2, 1];
+  setTimeout(() => {
+    selectedFigure = figures[5][5];
+    move(selectedFigure, options[6][4]); 
+  }, 750);
+  setTimeout(() => {
+    figures[2][2].color = [1/2, 1/2, 1];
+  }, 1500);
   selectedFigure = null;
 }
 
 function three() {
   figures[3][3].color = [1,1,1];
-  selectedFigure = figures[3][5];
-  move(selectedFigure, options[4][4]);
-  figures[5][3].color = [1/2, 1/2, 1];
+  setTimeout(() => {
+    selectedFigure = figures[3][5];
+    move(selectedFigure, options[4][4]);
+  }, 750);
+  setTimeout(() => {
+    figures[5][3].color = [1/2, 1/2, 1];
+  }, 1500);
   selectedFigure = null;
 }
 
 function four() {
   figures[3][5].color = [1,1,1];
-  selectedFigure = figures[2][6];
-  move(selectedFigure, options[4][4]);
-  figures[3][3].color = [1/2, 1/2, 1];
+  setTimeout(() => {
+    selectedFigure = figures[2][6];
+    move(selectedFigure, options[4][4]);
+  }, 750);
+  setTimeout(() => {
+    figures[3][3].color = [1/2, 1/2, 1];
+  }, 1500);
   selectedFigure = null;
 }
 
 function five() {
   figures[5][5].color = [1,1,1];
-  selectedFigure = figures[3][7];
-  move(selectedFigure, options[2][6]);
-  figures[5][5].color = [1/2, 1/2, 1];
+  setTimeout(() => {
+    selectedFigure = figures[3][7];
+    move(selectedFigure, options[2][6]);
+  }, 750);
+  setTimeout(() => {
+    figures[5][5].color = [1/2, 1/2, 1];
+  }, 1500);
   selectedFigure = null;
 }
 
 function six() {
   figures[3][7].color = [1,1,1];
-  selectedFigure = figures[5][7];
-  move(selectedFigure, options[4][6]);
-  figures[3][7].color = [1/2, 1/2, 1];
+  setTimeout(() => {
+    selectedFigure = figures[5][7];
+    move(selectedFigure, options[4][6]);
+  }, 750);
+  setTimeout(() => {
+    figures[3][7].color = [1/2, 1/2, 1];
+  }, 1500);
   selectedFigure = null;
 }
 
 function seven() {
   figures[7][3].color = [1,1,1];
+
+  selectedFigure = figures[7][5];
+  move(selectedFigure, options[6][4]);
+  selectedFigure = figures[7][3];
+  move(selectedFigure, options[5][5]);
+
+  selectedFigure = figures[1][5];
+  move(selectedFigure, options[2][4]);
+  selectedFigure = figures[0][2];
+  move(selectedFigure, options[1][3]);
+  
+  figures[0][6].visible = false;
+  
+  selectedFigure = figures[2][6];
+  move(selectedFigure, options[3][5]);
+  selectedFigure = figures[5][5];
+  move(selectedFigure, options[6][4]);
+  
+  selectedFigure = figures[6][6];
+  move(selectedFigure, options[5][5]);
+  selectedFigure = figures[6][4];
+  move(selectedFigure, options[4][6]);
+
+  selectedFigure = figures[1][7];
+  move(selectedFigure, options[2][6]);
+  figures[7][7].visible = false;
+  // selectedFigure = figures[3][3];
+  // move(selectedFigure, options[4][4])
+  //
+  selectedFigure = figures[0][6];
+  move(selectedFigure, options[1][5]);
+  selectedFigure = figures[1][1];
+  move(selectedFigure, options[2][2]);
+
+  selectedFigure = figures[3][5];
+  move(selectedFigure, options[4][4]);
+  selectedFigure = figures[1][3];
+  move(selectedFigure, options[3][5]);
+
+  selectedFigure = figures[3][5];
+  move(selectedFigure, options[1][7]);
+  selectedFigure = figures[4][4];
+  move(selectedFigure, options[3][3]);
+  
+  // selectedFigure = figures[2][4];
+  // move(selectedFigure, options[0][2]);
+  // selectedFigure = figures[1][1];
+  // move(selectedFigure, options[2][2]);
+
+  // selectedFigure = figures[0][2];
+  // move(selectedFigure, options[1][1]);
+  // selectedFigure = figures[2][0];
+  // move(selectedFigure, options[1][1]);
+
+  console.log("Bruh");
+  figures[2][2].color = [1/2, 1/2, 1];
   selectedFigure = null;
 }

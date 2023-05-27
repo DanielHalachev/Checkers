@@ -110,45 +110,128 @@ function main() {
 }
 
 function mouseDown(event) {
-    clX = event.clientX;
-    clY = event.clientY;
-    fig = p.objectAtPoint(event.clientX, event.clientY);
-    console.log("mouseDown, pressed object=", fig);
-    if (fig) {
-        // we have selected either a figure or a square to move it to
-        // if it's a figure
-        if (selectedFigure == null) {
-        console.log(fig.color);
-          if(fig.color[0]==1/2 && fig.color[1]==1/2 && fig.color[2] == 1){
-            console.log("We have pressed a figure");
-            selectedFigure = fig;
-            prepareMovement(selectedFigure);
-            } else {
-            selectedFigure = null;
-            fig = null;
-            alert("Моля изберете акцентираната фигура");
-            }
-        }
-        // do something only if we have pressed an object, not an empty space
-        else {
-            // we haven't pressed the figure we have intially selected, but a square to move to
-            if (fig != selectedFigure && isPossibleOption(fig)) {
-                console.log("We have pressed a square")
-                move(selectedFigure, fig);
-            }
-            // we haven't pressed the figure we have intially selected, but another figure
-            else if (fig != selectedFigure && isFigure(fig)) {
-                console.log("We have selected another figure");
-                hideOptions();
-            }
-            // we have pressed the figure we had selected initially
-            else {
-                console.log("We haven't pressed neither another figure, nor a square");
-                hideOptions();
-            }
-            selectedFigure = null;
-        }
+  clX = event.clientX;
+  clY = event.clientY;
+  fig = p.objectAtPoint(event.clientX, event.clientY);
+  console.log("mouseDown, pressed object=", fig);
+  if (fig) {
+    // we have selected either a figure or a square to move it to
+    // if it's a figure
+    if (selectedFigure == null) {
+      console.log(fig.color);
+      if(fig.color[0]==1/2 && fig.color[1]==1/2 && fig.color[2] == 1){
+        console.log("We have pressed a figure");
+        selectedFigure = fig;
+        prepareMovement(selectedFigure);
+      } else {
+        selectedFigure = null;
+        fig = null;
+        alert("Моля изберете акцентираната фигура");
+      }
     }
+    // do something only if we have pressed an object, not an empty space
+    else {
+      // we haven't pressed the figure we have intially selected, but a square to move to
+      if (fig != selectedFigure && isPossibleOption(fig)) {
+        switch (instructionCounter) {
+          case 1:
+            if(fig!=options[5][3]){
+              alert("Моля изберете дясната опция");
+              hideOptions();
+            } else {
+              move(selectedFigure, fig);
+              instructionButton.disabled = false;
+              setTimeout(disableCanvas, 750);
+            }
+            break;
+          case 2:
+            if(fig!=options[3][3]){
+              alert("Моля изберете дясната опция");
+              hideOptions();
+            } else {
+              move(selectedFigure, fig);
+              instructionButton.disabled = false;
+              setTimeout(disableCanvas, 750);
+            }
+            break;
+          case 3:
+            if(fig!=options[3][5]){
+              alert("Моля изберете дясната опция");
+              hideOptions();
+            } else {
+              move(selectedFigure, fig);
+              instructionButton.disabled = false;
+              setTimeout(disableCanvas, 750);
+            }
+            break;
+          case 4:
+            if(fig!=options[5][5]){
+              alert("Моля изберете дясната опция");
+              hideOptions();
+            } else {
+              move(selectedFigure, fig);
+              instructionButton.disabled = false;
+              setTimeout(disableCanvas, 750);
+            }
+            break;
+          case 5:
+            if(fig!=options[3][7]){
+              alert("Моля изберете дясната опция");
+              hideOptions();
+            } else {
+              move(selectedFigure, fig);
+              instructionButton.disabled = false;
+              setTimeout(disableCanvas, 750);
+            }
+            break;
+          case 6:
+            if(fig!=options[7][3]){
+              alert("Моля изберете дясната опция");
+              hideOptions();
+            } else {
+              move(selectedFigure, fig);
+              instructionButton.disabled = false;
+              setTimeout(disableCanvas, 750);
+            }
+            break;
+          case 7:
+            if(fig!=options[5][3]){
+              alert("Моля изберете дясната опция");
+              hideOptions();
+            } else {
+              move(selectedFigure, fig);
+              instructionButton.disabled = false;
+              setTimeout(disableCanvas, 750);
+            }
+            break;
+          case 7:
+            if(fig!=options[4][4]){
+              alert("Моля изберете дясната опция");
+              hideOptions();
+            } else {
+              move(selectedFigure, fig);
+              instructionButton.disabled = false;
+              setTimeout(disableCanvas, 750);
+              alert("Поздравления! Успешно преминахте наръчника и спечелихте играта!");
+            }
+            break;
+          default:
+            break;
+        }
+      }
+      // we haven't pressed the figure we have intially selected, but another figure
+      else if (fig != selectedFigure && isFigure(fig)) {
+        console.log("We have selected another figure");
+        hideOptions();
+      }
+      // we have pressed the figure we had selected initially
+      else {
+        console.log("We haven't pressed neither another figure, nor a square");
+        hideOptions();
+      }
+      selectedFigure = null;
+    }
+  }
 }
 
 // function to handle dragging with the mouse
