@@ -26,7 +26,7 @@
 
 <body onload="main()">
     <div class="navbar" role="navigation">
-      <span class="logo">Шашки</span>
+      <span class="logo"><a href="./index.html">Шашки</a></span>
       <div class="links">
         <a href="index.html" aria-label="Начало" class="nav-link home-link">Начало</a>
         <a href="index.html#about-game-view" aria-label="История на играта" class="nav-link about-game-link">История на играта</a>
@@ -38,6 +38,10 @@
     </div>
     <div id="board-view">
       <h2>Игра с приятел</h2>
+        <br>
+        <label>
+          <input type="checkbox" onchange="toggleRotation()" id="check">Автоматично завъртане
+        </label>
       <canvas id="suica_canvas" width="1190" height="560"></canvas>
     </div>
 </body>
