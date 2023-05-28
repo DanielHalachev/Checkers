@@ -1,7 +1,43 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Pacifico&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Marck+Script&family=Montserrat:wght@500&family=Pacifico&display=swap');
 
-/* Common styles */
+:root {
+  --background-color: #ffffff;
+  --on-background: #000000;
+  --primary-color: #ffffff;
+  --on-primary-color: #000000;
+  --secondary-color: red;
+  --on-secondary-color: #ffffff;
+  --third-color: #333;
+  --on-third-color: #ffffff;
+  --dhimmer: rgba(255, 255, 255, 0.15);
+
+}
+
+.theme-light {
+  --background-color: #ffffff;
+  --on-background: #000000;
+  --primary-color: #ffffff;
+  --on-primary-color: #000000;
+  --secondary-color: red;
+  --on-secondary-color: #ffffff;
+  --third-color: #333;
+  --on-third-color: #ffffff;
+  --dhimmer: rgba(255, 255, 255, 0.15);
+}
+
+.theme-dark {
+  --background-color: #333333;
+  --on-background: #ffffff;
+  --primary-color: #333333;
+  --on-primary-color: #ffffff;
+  --secondary-color: red;
+  --on-secondary-color: #ffffff;
+  --third-color: #dddddd;
+  --on-third-color: #000000;
+  --dhimmer: rgba(0, 0, 0, 0.65);
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -11,12 +47,30 @@ body {
   margin: 0;
 }
 
+h2 {
+  font-size: 2em;
+  margin-bottom: 1em;
+}
+
 p {
   font-size: 1.2em;
 }
 
 button {
+  padding: 1em 2em;
+  font-size: 1.2em;
+  width: 250px;
+  background-color: var(--third-color);
+  color: var(--on-third-color);
+  border: 1px solid var(--secondary-color);
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
   font-family: "Pacifico", cursive;
+}
+
+button:hover {
+  opacity: 0.85;
 }
 
 button[disabled] {
@@ -27,9 +81,24 @@ button[disabled]:hover {
   cursor: auto;
 }
 
+button.slide {
+  background: var(--background-color);
+  color: var(--on-background);
+  border: none;
+  font-size: 1em;
+  color:initial;
+  width: auto;
+}
+
+button.slide span{
+  background: var(--background-color);
+  color: var(--on-background);
+}
+
 /* Home view styles */
 .home-view {
-  background-image: url(checkers-bg.png);
+  /* background-image: url(checkers-bg.png); */
+  background-image: url(checkers-bg.jpg);
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -54,28 +123,16 @@ button[disabled]:hover {
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.45);
+  background-color: var(--dhimmer);
 }
 
 .home-view h1 {
   font-size: 10em;
   text-align: center;
   transform: rotate(-5deg);
-  text-shadow: 2px 2px red;
-  color: white;
+  text-shadow: 2px 2px var(--secondary-color);
+  color: var(--on-secondary-color);
   margin: 0;
-}
-
-button {
-  padding: 1em 2em;
-  font-size: 1.2em;
-  width: 250px;
-  background-color: #333;
-  color: #fff;
-  border: 1px solid red;
-  border-radius: 5px;
-  cursor: pointer;
-  position: relative;
 }
 
 /* Navbar styles */
@@ -85,51 +142,55 @@ button {
   left: 0;
   right: 0;
   height: 70px;
-  background-color: #333;
+  background-color: var(--third-color);
+  color: var(--on-third-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 1em;
-  color: #fff;
   z-index: 100;
 }
 
 .navbar .logo {
   font-size: 2.5em;
   transform: rotate(-5deg);
-  text-shadow: 2px 2px red;
+  text-shadow: 2px 2px var(--secondary-color);
+  color: var(--on-third-color);
   margin: 1em;
-  color: white;
 }
 
 .links {
-  float: right;
+  margin-left: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .navbar a {
-  color: white;
+  color: var(--on-third-color);
   text-decoration: none;
   font-size: 1.2em;
   margin-right: 1em;
   float: right;
 }
 
+.nav-link.active {
+  text-decoration: underline;
+}
+
 /* About the game view styles */
 #about-game-view {
   height: calc(100vh - 70px);
-  background-color: white;
+  background-color: var(--background-color);
+  color: var(--on-background);
   padding: 1em;
   display: flex;
   flex-direction: column;
   justify-content:center;
   align-items: center;
   scroll-margin-top: 70px;
-}
-
-
-#about-game-view h2 {
-  font-size: 2em;
-  margin-bottom: 1em;
 }
 
 #about-game-view #gallery {
@@ -160,7 +221,8 @@ button {
 /* Tutorial view styles */
 #tutorial-view {
   height: calc(100vh - 70px);
-  background-color: white;
+  background-color: var(--background-color);
+  color: var(--on-background);
   display: flex;
   align-items: center;
   scroll-margin-top: 70px;
@@ -181,7 +243,7 @@ button {
 }
 
 #suica_canvas {
-  border: 1px solid #333;
+  border: 1px solid var(--third-color);
 }
 
 .tutorial-instructions {
@@ -189,11 +251,6 @@ button {
   flex-direction: column;
   height: 640px;
   width: calc(100%);
-}
-
-.tutorial-instructions h2 {
-  font-size: 1.5em;
-  margin-bottom: 1em;
 }
 
 .tutorial-instructions button {
@@ -207,9 +264,47 @@ button {
 }
 
 #to-board-view {
+  background-color: var(--background-color);
+  color: var(--on-background);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: calc(100vh - 70px)
+}
+
+#board-view {
+  background-color: var(--background-color);
+  color: var(--on-background);
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  margin-top: 70px; 
+  height: calc(100vh - 70px);
+  padding-bottom: 20px;
+}
+
+#help-view {
+  background-color: var(--background-color);
+  color: var(--on-background);
+  min-height: calc(100vh - 70px);
+  margin-top: 70px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #dddddd;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #222;
 }

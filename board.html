@@ -5,25 +5,40 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>Шашки</title>
     <script src="suica.min.js"></script>
-    <script src="script.js"></script>
+    <script src="pureBoard.js"></script>
+    <script src="theme.js"></script>
     <script src="https://kit.fontawesome.com/5c9473fc67.js" crossorigin="anonymous"></script>
+    <script>
+    window.addEventListener('load', function() {
+      var suicaCanvas = document.getElementById('suica_canvas');
+      var screenWidth = Math.min(window.innerWidth, 1190);
+      suicaCanvas.width = (screenWidth - 40);
+    });
+    </script>
+    <script>
+    window.addEventListener('resize', function() {
+      var suicaCanvas = document.getElementById('suica_canvas');
+      var screenWidth = Math.min(window.innerWidth, 1190);
+      suicaCanvas.width = (screenWidth - 40);
+    });
+    </script>
   </head>
 
 <body onload="main()">
-    <!-- Navbar -->
-    <div class="navbar">
-        <span>Шашки</span>
-        <div class="links">
-            <a href="board.html">Игра с приятел</a>
-            <a href="index.html#to-board-view">Правила на играта</a>
-            <a href="index.html#about-game-view">История на играта</a>
-            <a href="index.html#">Начало</a>
-        </div>
+    <div class="navbar" role="navigation">
+      <span class="logo">Шашки</span>
+      <div class="links">
+        <a href="index.html" aria-label="Начало" class="nav-link home-link">Начало</a>
+        <a href="index.html#about-game-view" aria-label="История на играта" class="nav-link about-game-link">История на играта</a>
+        <a href="index.html#tutorial-view" aria-label="Правила на играта" class="nav-link tutorial-link">Правила на играта</a>
+        <a href="./board.html" aria-label="Игра с приятел" class="nav-link to-board-link">Игра с приятел</a>
+        <a style="cursor: pointer;" onclick="toggleTheme()" aria-label="Промяна на темата"><span class="fa fa-circle-half-stroke" aria-hidden="true"></span></a>
+        <a href="./help.html" aria-label="Помощ"><span class="fa fa-circle-question" aria-hidden="true"></span></a>
+      </div>
     </div>
-
-    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top: 100px; height: calc(100vh - 100px);">
+    <div id="board-view">
       <h2>Игра с приятел</h2>
-      <canvas id="suica_canvas" width="1190" height="580"></canvas>
+      <canvas id="suica_canvas" width="1190" height="560"></canvas>
     </div>
 </body>
 

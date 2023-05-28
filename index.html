@@ -7,6 +7,8 @@
     <script src="suica.min.js"></script>
     <script src="script.js"></script>
     <script src="tutorial.js"></script>
+    <script src="theme.js"></script>
+    <script src="orientation.js"></script>
     <script src="https://kit.fontawesome.com/5c9473fc67.js" crossorigin="anonymous"></script>
     <script>
     window.addEventListener('load', function() {
@@ -26,72 +28,52 @@
 
   <body onload="main()">
     <!-- Home view -->
-    <div class="home-view">
-      <div id="dimmer"></div>
+    <div class="home-view" role="main" id="home-view">
+      <div id="dimmer" aria-hidden="true"></div>
       <h1>Шашки</h1>
       <div class="home-buttons">
         <button id="about-game-btn" onclick="location.href='#about-game-view'">История на играта</button>
         <button id="tutorial-btn" onclick="location.href='#tutorial-view'">Правила на играта</button>
         <button id="to-board-btn" onclick="location.href='#to-board-view'">Игра с приятел</button>
-        <button id="help-btn" onclick="location.href='./help.html'">Помощ</button>
+        <button id="help-btn" onclick="location.href='help.html'">Помощ</button>
       </div>
     </div>
 
     <!-- Navbar -->
-    <div class="navbar">
+    <div class="navbar" role="navigation">
       <span class="logo">Шашки</span>
       <div class="links">
-        <a href="#"><span class="fa fa-circle-question"></span></a>
-        <a href="#"><span class="fa fa-circle-half-stroke"></span></a>
-        <!-- <a href="./help.html">Помощ</a> -->
-        <a href="#to-board-view">Игра с приятел</a>
-        <a href="#tutorial-view">Правила на играта</a>
-        <a href="#about-game-view">История на играта</a>
-        <a href="#">Начало</a>
+        <a href="#" aria-label="Начало" class="nav-link home-link">Начало</a>
+        <a href="#about-game-view" aria-label="История на играта" class="nav-link about-game-link">История на играта</a>
+        <a href="#tutorial-view" aria-label="Правила на играта" class="nav-link tutorial-link">Правила на играта</a>
+        <a href="#to-board-view" aria-label="Игра с приятел" class="nav-link to-board-link">Игра с приятел</a>
+        <a style="cursor: pointer;" onclick="toggleTheme()" aria-label="Промяна на темата"><span class="fa fa-circle-half-stroke" aria-hidden="true"></span></a>
+        <a href="./help.html" aria-label="Помощ"><span class="fa fa-circle-question" aria-hidden="true"></span></a>
       </div>
     </div>
 
     <!-- About the game view -->
-    <div id="about-game-view">
+    <div id="about-game-view" role="article">
       <h2>История на играта</h2>
-      <!-- <p>За играта по-късно разказват Платон и Омир. -->
-      <!--     Римляните разработват вариант на играта, наречен <i>latrunculi</i>, или "игра на малките войници". </p> -->
-      <!-- <p>Съвременния си вид, играта придобива през Средновековието. -->
-      <!--     Арабите създават играта "Ал-Кирк", която се играе на дъска 5x5, и я пренасят в Испания, където я наричат -->
-      <!--     "Алкерке". -->
-      <!--     В началото на дванадесети век играта достига и до Франция, където е адаптирана, за да се играе на шахматна -->
-      <!--     дъска. -->
-      <!--     Наричат я <i>Fierges</i>. </p> -->
-      <!-- <p>Днес играта е разпространена по целия свят и се среща в няколко вариации - Checkers (САЩ), -->
-      <!--     draughts(Великобритания), руски шашки, турски шашки, международни шашки и други. -->
-      <!--     Повечето варианти се играят на дъска 8x8, а международните шашки - на дъска 10x10. </p> -->
-      <!-- <p>Играта е популярна и на турнири, където традиционно се играе в международния си вариант, като една игра -->
-      <!--     традиционно отнема от 60 минути до 3 часа.</p> -->
-      <div id="gallery">
-        <span class="fa fa-chevron-left"></span>
+      <div id="gallery" role="complementary">
+        <button class="slide" aria-label="Предишен слайд"><span class="fa fa-chevron-left" aria-hidden="true"></span></button>
         <div id="gallery-content">
           <p>Шашки е настолна логическа игра за двама, подобна на шаха.
             Играе се на шахматна дъска с бели и черни редуващи се квадратчета.
             Шашките са белите и черните фигури, които в началото на играта са равноправни.
-            Фигурите са разположени само в черните полета на шахматната дъска и могат да се придвиждват по диагонал и да
+            Фигурите са разположени само в черните полета на шахматната дъска и могат да се придвижват по диагонал и да
             взимат противникови фигури на пътя си.
             При достигане на срещуположния край на дъската, фигурите се превръщат в "царе", което им позволява да се
             движат по диагонал не само напред, но и назад.</p>
-          <!-- <p>Играта има древна история. -->
-          <!--     Счита се, че произхожда от Древен Египет, където археолозите са открили дъски, датиращи от 3000г. пр. Хр. -->
-          <!--     Артефактите потвърждават, че някои фарони, сред които Хатшепсут, са играли шашки по фигурите и дъските, -->
-          <!--     открити в гробниците им. </p> -->
-          <div style="width: 850px; height: 150px; border: 1px solid black;">
-            Снимка
-          </div>
         </div>
-        <span class="fa fa-chevron-right"></span>
+        <button class="slide" aria-label="Следващ слайд"><span class="fa fa-chevron-right" aria-hidden="true"></span></button>
       </div>
+    </div>
     </div>
 
     <!-- Tutorial view -->
-    <div id="tutorial-view">
-      <canvas id="suica_canvas" width="1190" height="640" class="disabled"></canvas>
+    <div id="tutorial-view" role="main" aria-live="polite">
+      <canvas id="suica_canvas" width="1190" height="640" class="disabled" aria-hidden="true"></canvas>
       <div class="tutorial-instructions">
         <h2>Указания</h2>
         <p id="instruction">
@@ -99,17 +81,18 @@
           Всички фигури в началото на играта са обикновени и могат да се движат само напред по диагонал.
           Първи на ход са белите фигури.
         </p>
-          <button id="next-btn" onclick="next()">Напред</button>
-          <br>
-          <label>
-            <input type="checkbox" onchange="toggleRotation()" id="check">Автоматично завъртане
-          </label>
+        <button id="next-btn" onclick="next()">Напред</button>
+        <br>
+        <label>
+          <input type="checkbox" onchange="toggleRotation()" id="check">Автоматично завъртане
+        </label>
       </div>
     </div>
-    <div id="to-board-view">
+    <div id="to-board-view" role="main">
       <h2>Играйте с приятел</h2>
       <button type="button" onclick="location.href='board.html'">Към дъската!</button>
     </div>
   </body>
 
 </html>
+

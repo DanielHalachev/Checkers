@@ -176,7 +176,7 @@ function mouseDown(event) {
             break;
           case 5:
             if(fig!=options[3][7]){
-              alert("Моля изберете дясната опция");
+              alert("Моля преместете шашката на последния ред, за да я превърнете в крал. ");
               hideOptions();
             } else {
               move(selectedFigure, fig);
@@ -186,17 +186,7 @@ function mouseDown(event) {
             break;
           case 6:
             if(fig!=options[7][3]){
-              alert("Моля изберете дясната опция");
-              hideOptions();
-            } else {
-              move(selectedFigure, fig);
-              instructionButton.disabled = false;
-              setTimeout(disableCanvas, 750);
-            }
-            break;
-          case 7:
-            if(fig!=options[5][3]){
-              alert("Моля изберете дясната опция");
+              alert("Моля вземете двете фигури с един ход, като изберете другата опция. ");
               hideOptions();
             } else {
               move(selectedFigure, fig);
@@ -206,13 +196,22 @@ function mouseDown(event) {
             break;
           case 7:
             if(fig!=options[4][4]){
-              alert("Моля изберете дясната опция");
+              alert("Моля вземете последната фигура, като я прескочите. ");
               hideOptions();
             } else {
               move(selectedFigure, fig);
               instructionButton.disabled = false;
               setTimeout(disableCanvas, 750);
               alert("Поздравления! Успешно преминахте наръчника и спечелихте играта!");
+            }
+            break;
+          case 7:
+            if(fig!=options[4][4]){
+              alert("Моля изберете дясната опция");
+            } else {
+              move(selectedFigure, fig);
+              instructionButton.disabled = false;
+              setTimeout(disableCanvas, 750);
             }
             break;
           default:
