@@ -231,6 +231,7 @@ button.slide span{
   float: right;
   max-height: 75%;
   max-width: 35%;
+  border-radius: 3px;
 }
 
 /* Tutorial view styles */
