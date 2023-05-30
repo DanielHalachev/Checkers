@@ -9,6 +9,7 @@
     <script src="tutorial.js"></script>
     <script src="theme.js"></script>
     <script src="orientation.js"></script>
+    <script src="js/gallery.js"></script>
     <script src="https://kit.fontawesome.com/5c9473fc67.js" crossorigin="anonymous"></script>
     <script>
     window.addEventListener('load', function() {
@@ -56,7 +57,7 @@
     <div id="about-game-view" role="article">
       <h2>История на играта</h2>
       <div id="gallery" role="complementary">
-        <button class="slide" aria-label="Предишен слайд"><span class="fa fa-chevron-left" aria-hidden="true"></span></button>
+        <button class="slide" aria-label="Предишен слайд" onclick="previousSlide()" disabled><span class="fa fa-chevron-left" aria-hidden="true"></span></button>
         <div id="gallery-content">
           <p>Шашки е настолна логическа игра за двама, подобна на шаха.
             Играе се на шахматна дъска с бели и черни редуващи се квадратчета.
@@ -66,7 +67,7 @@
             При достигане на срещуположния край на дъската, фигурите се превръщат в "царе", което им позволява да се
             движат по диагонал не само напред, но и назад.</p>
         </div>
-        <button class="slide" aria-label="Следващ слайд"><span class="fa fa-chevron-right" aria-hidden="true"></span></button>
+        <button class="slide" aria-label="Следващ слайд" onclick="nextSlide()"><span class="fa fa-chevron-right" aria-hidden="true"></span></button>
       </div>
     </div>
     </div>

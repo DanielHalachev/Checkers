@@ -31,6 +31,7 @@ instructions = [
 
 // function to show next tip
 function next() {
+  if(instructionCounter < 7){
   enableCanvas();
   instructionCounter = (instructionCounter + 1) % (instructions.length);
   document.getElementById("instruction").innerHTML = instructions[instructionCounter];
@@ -55,6 +56,7 @@ function next() {
       eight(); break;
     default:
       break;
+  }
   }
   instructionButton.disabled = true;
 }
@@ -195,8 +197,6 @@ async function seven() {
   // selectedFigure = figures[2][0];
   // move(selectedFigure, options[1][1]);
 
-  console.log("Bruh");
   figures[2][2].color = [1/2, 1/2, 1];
   selectedFigure = null;
-  disableCanvas();
 }

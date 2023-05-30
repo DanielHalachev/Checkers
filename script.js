@@ -205,15 +205,6 @@ function mouseDown(event) {
               alert("Поздравления! Успешно преминахте наръчника и спечелихте играта!");
             }
             break;
-          case 7:
-            if(fig!=options[4][4]){
-              alert("Моля изберете дясната опция");
-            } else {
-              move(selectedFigure, fig);
-              instructionButton.disabled = false;
-              setTimeout(disableCanvas, 750);
-            }
-            break;
           default:
             break;
         }

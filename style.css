@@ -98,7 +98,7 @@ button.slide span{
 /* Home view styles */
 .home-view {
   /* background-image: url(checkers-bg.png); */
-  background-image: url(checkers-bg.jpg);
+  background-image: url(./images/checkers-bg.jpg);
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -193,6 +193,10 @@ button.slide span{
   scroll-margin-top: 70px;
 }
 
+#about-game-view h2 {
+  margin-bottom: 0;
+}
+
 #about-game-view #gallery {
   display: flex;
   flex-direction: row;
@@ -211,11 +215,22 @@ button.slide span{
 }
 
 #gallery-content {
-  flex: 6;
+  height: calc(100vh - 70px - 56px);
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   align-items: center;
   align-content: center;
+  gap: 20px;
+}
+
+#gallery-content p{
+  font-size: 1.35em;
+}
+
+#gallery-content img {
+  float: right;
+  max-height: 75%;
+  max-width: 35%;
 }
 
 /* Tutorial view styles */
